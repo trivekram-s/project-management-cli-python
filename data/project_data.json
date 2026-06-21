@@ -1,0 +1,67 @@
+{
+  "users": [
+    {
+      "user_id": 1,
+      "name": "Alex",
+      "email": "alex@example.com",
+      "projects": [
+        {
+          "project_id": 1,
+          "title": "CLI Tool",
+          "owner_name": "Alex",
+          "description": "Build project tracker",
+          "due_date": "2025-08-01",
+          "created_at": "2026-06-21 07:19",
+          "tasks": [
+            {
+              "task_id": 1,
+              "title": "Implement add-task command",
+              "status": "complete",
+              "assigned_to": "Alex",
+              "created_at": "2026-06-21 07:19"
+            },
+            {
+              "task_id": 2,
+              "title": "Write README",
+              "status": "pending",
+              "assigned_to": "Jordan",
+              "created_at": "2026-06-21 07:19"
+            },
+            {
+              "task_id": 3,
+              "title": "Add AI summarizer",
+              "status": "pending",
+              "assigned_to": "Alex",
+              "created_at": "2026-06-21 07:19"
+            }
+          ]
+        },
+        {
+          "project_id": 2,
+          "title": "API Service",
+          "owner_name": "Alex",
+          "description": "REST backend",
+          "due_date": "2025-09-15",
+          "created_at": "2026-06-21 07:19",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "user_id": 2,
+      "name": "Jordan",
+      "email": "jordan@example.com",
+      "projects": [
+        {
+          "project_id": 3,
+          "title": "Frontend App",
+          "owner_name": "Jordan",
+          "description": "React dashboard",
+          "due_date": "No due date set",
+          "created_at": "2026-06-21 07:19",
+          "tasks": []
+        }
+      ]
+    }
+  ]
+}
