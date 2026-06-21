@@ -1,28 +1,35 @@
 # 📋 Project Management CLI Tool
 
-A Python-based Command-Line Interface for managing users, projects, and tasks — with an integrated AI assistant powered by the Project Summary Service API.
+A Python-based Command-Line Interface (CLI) application for managing users, projects, and tasks. The application demonstrates object-oriented programming concepts, JSON-based data persistence, modular design, and command-line interaction using Python.
 
 ---
 
-## 📁 File Structure
+## Repository
 
-```
-project-management-cli/
-├── main.py                  # CLI entry point (argparse + command dispatch)
+GitHub Repository: https://github.com/trivekram-s/project-management-cli-python
+
+**Author:** Trivekram
+
+---
+
+## 📁 Project Structure
+
+```text
+project-management-cli-python/
+├── main.py                  # CLI entry point
 ├── models/
 │   ├── __init__.py
-│   ├── user.py              # Person base class + User subclass
-│   ├── project.py           # Project class with task management
-│   └── task.py              # Task class with status transitions
+│   ├── user.py              # User model
+│   ├── project.py           # Project model
+│   └── task.py              # Task model
 ├── services/
 │   ├── __init__.py
-│   ├── storage_service.py   # JSON file I/O for persistence
-│   └── ai_client.py         # Project Summary Service API client (summaries & suggestions)
+│   └── storage_service.py   # JSON file persistence
 ├── utils/
 │   ├── __init__.py
-│   └── formatters.py        # rich-powered CLI output helpers
+│   └── formatters.py        # CLI output formatting
 ├── data/
-│   └── project_data.json    # Auto-generated local data store
+│   └── project_data.json    # Local data storage
 ├── requirements.txt
 └── README.md
 ```
@@ -31,144 +38,225 @@ project-management-cli/
 
 ## ✨ Features
 
-- **User management** — add and list users
-- **Project management** — create projects per user with descriptions and due dates
-- **Task management** — add tasks, assign them, mark as in-progress or complete
-- **Data persistence** — all data saved locally in `data/project_data.json` via JSON
-- **Rich CLI output** — colour-coded tables and panels via the `rich` package
-- **AI summaries** — generate project summaries and next-step suggestions via the Project Summary Service API
+* Add and manage users
+* Create projects for users
+* Add tasks to projects
+* Update task status
+* View users, projects, and tasks
+* Store data locally using JSON
+* Rich formatted terminal output
+* Object-Oriented Programming design
+* Modular project structure
 
 ---
 
-## 🛠 Setup
+## 🛠 Prerequisites
 
-### 1. Clone the repository
+* Python 3.10 or later
+* Git
+
+Verify installation:
 
 ```bash
-git clone https://github.com/your-username/project-management-cli.git
-cd project-management-cli
+python --version
+git --version
 ```
 
-### 2. Create a virtual environment (recommended)
+---
+
+## 🚀 Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/trivekram-s/project-management-cli-python.git
+cd project-management-cli-python
+```
+
+### 2. Create a Virtual Environment (Optional but Recommended)
+
+#### Windows
 
 ```bash
 python -m venv venv
-source venv/bin/activate        # macOS/Linux
-venv\Scripts\activate           # Windows
+venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+#### Linux / macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure the AI client (optional)
-
-Set your Project Summary Service API key as an environment variable:
-
-```bash
-export ="sk-ant-..."   # macOS/Linux
-set =sk-ant-...        # Windows CMD
-```
-
-If the key is not set, all other commands work normally and AI features will display a friendly message.
-
 ---
 
-## 🚀 How to Run
+## ▶️ Running the Application
+
+Display available commands:
+
+```bash
+python main.py --help
+```
+
+General syntax:
 
 ```bash
 python main.py <command> [options]
 ```
 
-Run `python main.py --help` to see all available commands.
-
 ---
 
-## 📖 Example Commands
+## 📖 Example Usage
+
+### Add a User
 
 ```bash
-# Add users
 python main.py add-user --name "Alex" --email "alex@example.com"
-python main.py add-user --name "Jordan" --email "jordan@example.com"
+```
 
-# List all users
+### List Users
+
+```bash
 python main.py list-users
+```
 
-# Add projects to a user
-python main.py add-project --user "Alex" --title "CLI Tool" \
-  --description "Build project tracker" --due-date "2025-08-01"
+### Add a Project
 
-# List projects for a user
+```bash
+python main.py add-project --user "Alex" --title "CLI Tool" --description "Build project tracker"
+```
+
+### List Projects
+
+```bash
 python main.py list-projects --user "Alex"
+```
 
-# Add tasks to a project
-python main.py add-task --user "Alex" --project "CLI Tool" \
-  --title "Implement add-task command" --assigned-to "Alex"
-python main.py add-task --user "Alex" --project "CLI Tool" \
-  --title "Write README" --assigned-to "Jordan"
+### Add a Task
 
-# List tasks
+```bash
+python main.py add-task --user "Alex" --project "CLI Tool" --title "Implement add-task command"
+```
+
+### List Tasks
+
+```bash
 python main.py list-tasks --user "Alex" --project "CLI Tool"
+```
 
-# Update task status
-python main.py start-task --user "Alex" --project "CLI Tool" \
-  --task "Implement add-task command"
-python main.py complete-task --user "Alex" --project "CLI Tool" \
-  --task "Implement add-task command"
+### Start a Task
 
-# AI features (requires )
-python main.py summarize-project --user "Alex" --project "CLI Tool"
-python main.py suggest-next --user "Alex" --project "CLI Tool"
+```bash
+python main.py start-task --user "Alex" --project "CLI Tool" --task "Implement add-task command"
+```
+
+### Complete a Task
+
+```bash
+python main.py complete-task --user "Alex" --project "CLI Tool" --task "Implement add-task command"
 ```
 
 ---
 
-## 🤖 AI Client Feature
+## 🏗 Object-Oriented Design
 
-The `services/ai_client.py` module wraps the Project Summary Service API using the `project summary service` PyPI package. It exposes two methods used by the CLI:
+### Classes
 
-| Command | Description |
-|---|---|
-| `summarize-project` | 2-sentence summary + risk note + next step |
-| `suggest-next` | Single actionable next-step recommendation |
+#### User
 
-The service layer is intentionally separated from the CLI so that `main.py` only handles argument parsing and output, while `AIClient` handles all external API interaction. Failures are caught gracefully so the CLI never crashes on AI errors.
+* Name
+* Email
+* Projects
+
+#### Project
+
+* Title
+* Description
+* Due Date
+* Tasks
+
+#### Task
+
+* Title
+* Status
+* Assigned User
+
+### Relationships
+
+* One User → Many Projects
+* One Project → Many Tasks
+
+### OOP Concepts Demonstrated
+
+* Classes and Objects
+* Inheritance
+* Properties and Setters
+* Class Attributes
+* Object Relationships
+* JSON Serialization
+* Modular Design
 
 ---
 
-## ⚙️ OOP Design Highlights
+## 💾 Data Persistence
 
-| Feature | Where |
-|---|---|
-| Inheritance (`Person → User`) | `models/user.py` |
-| `@property` / setters with validation | `user.py`, `project.py`, `task.py` |
-| Class-level ID counters | All three model classes |
-| `__str__` / `__repr__` | All three model classes |
-| One-to-many relationships | `User → Projects`, `Project → Tasks` |
-| JSON serialization (`to_dict` / `from_dict`) | All three model classes |
+All application data is stored locally in:
+
+```text
+data/project_data.json
+```
+
+The file is automatically created and updated as users, projects, and tasks are added or modified.
 
 ---
 
 ## 📦 Dependencies
 
-| Package | Purpose |
-|---|---|
-| `rich` | Formatted tables, panels, and coloured CLI output |
-| `project summary service` | Project Summary Service API client for AI summaries and suggestions |
+| Package | Purpose                                              |
+| ------- | ---------------------------------------------------- |
+| rich    | Enhanced CLI tables, formatting, and terminal output |
+
+Install dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## ⚠️ Known Issues / Limitations
+## ⚠️ Limitations
 
-- User names are used as unique keys (case-insensitive). Two users with the same name are not supported.
-- No authentication or role-based access control.
-- AI features require an active internet connection and a valid ``.
-- Data is stored in a single flat JSON file; not suited for large datasets.
+* Data is stored in a single JSON file.
+* No authentication system.
+* User names must be unique.
+* Designed for learning and demonstration purposes.
+
+---
+
+## 🧪 Testing
+
+Verify available commands:
+
+```bash
+python main.py --help
+```
+
+Check project data:
+
+```bash
+python main.py list-users
+python main.py list-projects --user "Alex"
+```
 
 ---
 
 ## 📜 License
 
-MIT
+This project was created for learning and training purposes.
